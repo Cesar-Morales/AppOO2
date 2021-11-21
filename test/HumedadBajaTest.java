@@ -1,34 +1,29 @@
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class HumedadBajaTest {
+
+    private HumedadBaja humedad;
     
     @Before
     public void setUp() {
-    System.out.println("_______________________________________________________\n");
-        System.out.println("This is the setUp() method that runs before each testcase");
+        humedad = new HumedadBaja();
     }
 
     @Test
-    public void test_JUnit1() {
-        System.out.println("This is the testcase test_JUnit1() in this class");
-    }
-
-    @Test
-    public void test_JUnit2() {
-        System.out.println("This is the testcase test_JUnit2() in this class");
-    }
- 
-    @Test
-    public void test_JUnit3() {
-        System.out.println("This is the testcase test_JUnit3() in this class");
+    public void testPuedePlantarse() {
+        assertFalse(humedad.puedePlantarse("Tomate"));
+        assertTrue(humedad.puedePlantarse("Cebolla"));
+        assertTrue(humedad.puedePlantarse("Tomate"));
     }
 
     @After
     public void tearDown() {
-        System.out.println("This is the tearDown() method that runs after each testcase");
-        System.out.println("_______________________________________________________\n");
+        humedad = null;
     }
 
 }
