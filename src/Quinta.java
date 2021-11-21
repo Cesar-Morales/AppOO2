@@ -1,11 +1,12 @@
-package modulos;
 
 import java.util.HashMap;
 import java.util.HashSet;
+
 import java.util.Map;
 import java.util.Set;
 
 public class Quinta {
+
 
 	private Map<String,Espacio> espacios;
 	private EstacionDelAnio estacion;
