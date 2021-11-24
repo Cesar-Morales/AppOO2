@@ -1,22 +1,43 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class Quinta {
 
-
 	private Map<String,Espacio> espacios;
-	private EstacionDelAnio estacion;
-	private Set<Espacio> tiposEspacios; 
+	private EstacionDelAnio estacion;    //STATE
+	private Set<Espacio> tiposEspacios;
+	private String nombre;
 	
-	public Quinta() {
+	public Quinta(String nombre) {
+		setNombre(nombre);
 		setEspacios(new HashMap<String, Espacio>());
-		setEstacion(new EstacionDelAnio());
+		setEstacion(calcularEstacion());
 		setTiposEspacios(new HashSet<Espacio>());
 	}
+	
+	private EstacionDelAnio calcularEstacion() {
+		//hardcodeado 
+		//TODO: calcular realmente la epoca usando Test.java
+		return new Otonio();
+	}
+	
+	void agregarEspacio(Espacio e) {
+		tiposEspacios.add(e);
+	}
+	
+	public void eliminarEspacio(Espacio e) {
+		tiposEspacios.remove(e);
+	}
+	
+	public List<Espacio> listarEspacios(){
+		return new ArrayList<Espacio>(tiposEspacios);
+	}
+	
 	
 	/* Getters and Setters */
 
@@ -42,6 +63,14 @@ public class Quinta {
 
 	public void setTiposEspacios(Set<Espacio> tiposEspacios) {
 		this.tiposEspacios = tiposEspacios;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	/* Fin Getters and Setters */

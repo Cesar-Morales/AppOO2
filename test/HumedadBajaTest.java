@@ -1,3 +1,4 @@
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -6,8 +7,8 @@ public class HumedadBajaTest {
     
     @Before
     public void setUp() {
-    System.out.println("_______________________________________________________\n");
-        System.out.println("This is the setUp() method that runs before each testcase");
+    	System.out.println("_______________________________________________________\n");
+    	System.out.println("This is the setUp() method that runs before each testcase");
     }
 
     @Test
