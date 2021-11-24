@@ -1,5 +1,7 @@
 
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -21,9 +23,28 @@ public class Quinta {
 	}
 	
 	private EstacionDelAnio calcularEstacion() {
-		//hardcodeado 
-		//TODO: calcular realmente la epoca usando Test.java
-		return new Otonio();
+		Date date = new Date();
+		int mes = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
+		switch(mes) {
+	    	case 1:
+	    	case 2:
+	    	case 3:
+		        return new Verano();
+		    case 4:
+		    case 5:
+		    case 6:
+		        return new Otonio();
+		    case 7:
+		    case 8:
+		    case 9:
+		        return new Invierno();
+		    case 10:
+		    case 11:
+		    case 12:
+		        return new Primavera();
+		    default:
+		    	return null;
+		 }
 	}
 	
 	void agregarEspacio(Espacio e) {
