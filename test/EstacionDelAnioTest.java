@@ -9,7 +9,7 @@ class EstacionDelAnioTest {
 	
 	@BeforeAll
 	public static void setUp() {
-		invierno = new Invierno();
+		invierno = Invierno.getSingletonInstance();
 		//seguir con todas
 	}
 	

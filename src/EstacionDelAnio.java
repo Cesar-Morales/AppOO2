@@ -1,7 +1,7 @@
 public abstract class EstacionDelAnio {
 	private int humedad;
 	private int temperatura;
-	
+
 	public int getHumedad() {
 		return humedad;
 	}

@@ -29,19 +29,19 @@ public class Quinta {
 	    	case 1:
 	    	case 2:
 	    	case 3:
-		        return new Verano();
+		        return Verano.getSingletonInstance();
 		    case 4:
 		    case 5:
 		    case 6:
-		        return new Otonio();
+		        return Otonio.getSingletonInstance();
 		    case 7:
 		    case 8:
 		    case 9:
-		        return new Invierno();
+		        return Invierno.getSingletonInstance();
 		    case 10:
 		    case 11:
 		    case 12:
-		        return new Primavera();
+		        return Primavera.getSingletonInstance();
 		    default:
 		    	return null;
 		 }
