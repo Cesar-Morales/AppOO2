@@ -20,5 +20,4 @@ public abstract class EstacionDelAnio {
 
 	public abstract boolean cultivoApto(Cultivo c);
 
-	
 }
