@@ -3,8 +3,11 @@ public class Invierno extends EstacionDelAnio {
 		private static Invierno INVIERNO;
 	
 		private Invierno() {
-			setHumedad(10);
-			setTemperatura(-5);
+			setTemperaturaMax(18);
+			setTemperaturaMin(6);
+			setPromedioHumedad(0);
+			setPromedioLluvias(17);
+			setPromedioViento(20);
 		}
 		
 		public static Invierno getSingletonInstance() {
@@ -17,8 +20,13 @@ public class Invierno extends EstacionDelAnio {
 		}
 
 		@Override
-		public boolean cultivoApto(Cultivo c) {
-			return (c.getHumedadDondePuedeSerPlantado()).equals(getHumedad());
+		boolean cultivoApto(Cultivo c) {
+			int riego = c.getCantidadRiego();
+			int temperatura = c.getTemperatura();
+			if (riego >= getPromedioLluvias() && temperatura >= getTemperaturaMin()) {			
+				return true;
+			}
+			return false;
 		}
 
 }

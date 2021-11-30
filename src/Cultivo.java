@@ -1,30 +1,30 @@
-
+//BEAN CULTIVO
 public class Cultivo {
-	
-	//Basicamente esto es una plantilla de las frutas y verduras
-	//que va a tener el sistema, la cual debe tener ciertas
-	//variables (cambiar nombres) que van a servir para
-	//chequear donde pueden ser plantadas
 	
 	private String nombre;
 	private Integer durezaDondePuedeSerPlantado;
 	private Integer humedadDondePuedeSerPlantado;
 	private String familiaDeCultivos;
-	private Integer temperatura;	
-
-	public String getNombre() {
-		return nombre;
-	}
-
+	private Integer temperatura;
+	private Integer resistenciaDeCultivo;
+	private Integer cantidadRiego;
+	
 	public Cultivo(String nombre, Integer durezaDondePuedeSerPlantado, Integer humedadDondePuedeSerPlantado,
-			String familiaDeCultivos, Integer temperatura) {
+			String familiaDeCultivos, Integer temperatura, Integer resistenciaDeCultivo, Integer cantidadRiego) {
 		super();
 		this.nombre = nombre;
 		this.durezaDondePuedeSerPlantado = durezaDondePuedeSerPlantado;
 		this.humedadDondePuedeSerPlantado = humedadDondePuedeSerPlantado;
 		this.familiaDeCultivos = familiaDeCultivos;
 		this.temperatura = temperatura;
+		this.resistenciaDeCultivo = resistenciaDeCultivo;
+		this.cantidadRiego = cantidadRiego;
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -60,6 +60,22 @@ public class Cultivo {
 
 	public void setTemperatura(Integer temperatura) {
 		this.temperatura = temperatura;
+	}
+
+	public Integer getResistenciaDeCultivo() {
+		return resistenciaDeCultivo;
+	}
+
+	public void setResistenciaDeCultivo(Integer resistenciaDeCultivo) {
+		this.resistenciaDeCultivo = resistenciaDeCultivo;
+	}
+
+	public Integer getCantidadRiego() {
+		return cantidadRiego;
+	}
+
+	public void setCantidadRiego(Integer cantidadRiego) {
+		this.cantidadRiego = cantidadRiego;
 	}
 	
 	

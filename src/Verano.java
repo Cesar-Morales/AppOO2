@@ -4,8 +4,11 @@ public class Verano extends EstacionDelAnio {
 	private static Verano VERANO;
 	
 	private Verano() {
-		setHumedad(90);
-		setTemperatura(35);
+		setTemperaturaMax(35);
+		setTemperaturaMin(19);
+		setPromedioHumedad(51);
+		setPromedioLluvias(31);
+		setPromedioViento(17);
 	}
 	
 	public static Verano getSingletonInstance(){
@@ -18,8 +21,12 @@ public class Verano extends EstacionDelAnio {
 	}
 
 	@Override
-	public boolean cultivoApto(Cultivo c) {
-		return (c.getHumedadDondePuedeSerPlantado()).equals(getHumedad());
+	boolean cultivoApto(Cultivo c) {
+		int temperatura = c.getTemperatura();
+		if (temperatura >= getTemperaturaMin() && temperatura <= getTemperaturaMax()) {			
+			return true;
+		}
+		return false;
 	}
 
 }

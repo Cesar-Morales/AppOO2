@@ -3,8 +3,11 @@ public class Otonio extends EstacionDelAnio {
 	private static Otonio OTONIO;
 	
 	private Otonio() {
-		setHumedad(20);
-		setTemperatura(5);
+		setTemperaturaMax(21);
+		setTemperaturaMin(9);
+		setPromedioHumedad(13);
+		setPromedioLluvias(26);
+		setPromedioViento(18);
 	}
 	
 	public static Otonio getSingletonInstance() {
@@ -17,8 +20,12 @@ public class Otonio extends EstacionDelAnio {
 	}
 
 	@Override
-	public boolean cultivoApto(Cultivo c) {
-		return (c.getHumedadDondePuedeSerPlantado()).equals(getHumedad());
+	boolean cultivoApto(Cultivo c) {
+		int resistencia  = c.getResistenciaDeCultivo();
+		if (resistencia >= getPromedioViento()) {			
+			return true;
+		}
+		return false;
 	}
 
 }
