@@ -12,8 +12,9 @@ public class Roots implements TipoDeSuelo {
         cultivosAptos = cultivosAptosAux.stream().map(c -> c.toLowerCase()).collect(Collectors.toList());
     }
 
-    public boolean puedePlantarse(Cultivo cultivo, Double humedad) { 
-        return cultivosAptos.stream().anyMatch(c -> c.contains(cultivo.getName().toLowerCase()));
-    }
+	@Override
+	public boolean puedePlantarse(Cultivo cultivo, double humedad) {
+		return cultivosAptos.stream().anyMatch(c -> c.contains(cultivo.getName().toLowerCase()));
+	}
 
 }
