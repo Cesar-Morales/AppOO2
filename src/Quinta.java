@@ -26,21 +26,13 @@ public class Quinta {
 		Date date = new Date();
 		int mes = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
 		switch(mes) {
-	    	case 1:
-	    	case 2:
-	    	case 3:
+	    	case 1,2,3:
 		        return Verano.getSingletonInstance();
-		    case 4:
-		    case 5:
-		    case 6:
+		    case 4,5,6:
 		        return Otonio.getSingletonInstance();
-		    case 7:
-		    case 8:
-		    case 9:
+		    case 7,8,9:
 		        return Invierno.getSingletonInstance();
-		    case 10:
-		    case 11:
-		    case 12:
+		    case 10,11,12:
 		        return Primavera.getSingletonInstance();
 		    default:
 		    	return null;
