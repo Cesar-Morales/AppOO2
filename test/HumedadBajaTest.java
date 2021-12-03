@@ -11,6 +11,7 @@ public class HumedadBajaTest {
     
     @Before
     public void setUp() {
+
         humedad = new HumedadBaja();
     }
 
