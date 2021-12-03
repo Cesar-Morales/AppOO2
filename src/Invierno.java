@@ -16,7 +16,7 @@ public class Invierno extends EstacionDelAnio {
 			} else {
 				System.out.println("Invierno creado");
 			}
-			return new Invierno();
+			return INVIERNO;
 		}
 
 		@Override

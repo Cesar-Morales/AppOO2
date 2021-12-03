@@ -25,7 +25,6 @@ public class Cultivo {
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
@@ -77,6 +76,5 @@ public class Cultivo {
 	public void setCantidadRiego(Integer cantidadRiego) {
 		this.cantidadRiego = cantidadRiego;
 	}
-	
-	
+		
 }
