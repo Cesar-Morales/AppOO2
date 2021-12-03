@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BooleanSupplier;
-
 public class Espacio {
 
     private String name;
@@ -26,7 +24,8 @@ public class Espacio {
     }
 
     private boolean puedePlantarse(Cultivo cultivo) {
-        return Quinta.getEstacion().puedePlantarse() && this.getTipoDeSuelo().puedePlantarse(cultivo, this.getPorcentajeDeHumedad());
+        return Quinta.getEstacion().cultivoApto(cultivo) && 
+               this.getTipoDeSuelo().puedePlantarse(cultivo, this.getPorcentajeDeHumedad());
     }
 
     //Hacemos que este listar cultivos sea un imprmir o que solo devuelva los cultivos

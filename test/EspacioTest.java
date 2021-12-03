@@ -15,8 +15,8 @@ public class EspacioTest {
     @Before
     public void setUp() {
         TipoDeSuelo rootFamily = new Roots();
-        papa = new Cultivo("Papa", 8.0, 88.6, 2.3, 25.0, "Root");
-        cebolla = new Cultivo("Cebolla", 7.2, 80.3, 5.3, 25.0, "Amaryllidaceae");
+        papa = new Cultivo("Papa", 8.0, 88.6, 2.3, 25.0, "Root", 20.0, 12.0);
+        cebolla = new Cultivo("Cebolla", 7.2, 80.3, 5.3, 25.0, "Amaryllidaceae", 22.0, 13.0);
         espacio = new Espacio("Campo", rootFamily);
     }
 

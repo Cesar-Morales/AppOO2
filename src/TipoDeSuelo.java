@@ -1,5 +1,3 @@
-import java.util.List;
-
 /* Esta clase es el contrato que permite crear distintos tipos de suelo
 de manera personalisada para nuestro propio framework.
 

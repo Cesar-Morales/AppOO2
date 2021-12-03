@@ -6,14 +6,17 @@ public class Cultivo {
     private Double durezaOptima;
     private Double temperaturaOptima;
     private String nombreFamilia;
-
+	private Double resistenciaDeCultivo;
+	private Double cantidadRiego;
 
     public Cultivo(String name, 
                    Double phOptimo, 
                    Double humedadOptima,
                    Double durezaOptima,
                    Double temperaturaOptima,
-                   String nombreFamilia){
+                   String nombreFamilia,
+				   Double resistenciaDeCultivo, 
+				   Double cantidadRiego){
     
         setName(name);
         setPhOptimo(phOptimo);
@@ -21,6 +24,8 @@ public class Cultivo {
         setDurezaOptima(durezaOptima);
         setTemperaturaOptima(temperaturaOptima);
         setNombreFamilia(nombreFamilia);
+		setResistenciaDeCultivo(resistenciaDeCultivo);
+		setCantidadRiego(cantidadRiego);
             
     }
 
@@ -108,5 +113,21 @@ public class Cultivo {
     public void setNombreFamilia(String nombreFamilia) {
         this.nombreFamilia = nombreFamilia;
     }
+
+	public Double getResistenciaDeCultivo() {
+		return resistenciaDeCultivo;
+	}
+
+	public void setResistenciaDeCultivo(Double resistenciaDeCultivo) {
+		this.resistenciaDeCultivo = resistenciaDeCultivo;
+	}
+
+	public Double getCantidadRiego() {
+		return cantidadRiego;
+	}
+
+	public void setCantidadRiego(Double cantidadRiego) {
+		this.cantidadRiego = cantidadRiego;
+	}
 
 }
