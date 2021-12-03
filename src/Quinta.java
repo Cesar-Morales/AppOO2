@@ -11,7 +11,7 @@ import java.util.Set;
 public class Quinta {
 
 	private Map<String,Espacio> espacios;
-	private EstacionDelAnio estacion;    //STATE
+	private static EstacionDelAnio estacion;    //STATE
 	private Set<Espacio> tiposEspacios;
 	private String nombre;
 	
@@ -62,12 +62,12 @@ public class Quinta {
 		this.espacios = espacios;
 	}
 
-	public EstacionDelAnio getEstacion() {
+	public static EstacionDelAnio getEstacion() {
 		return estacion;
 	}
 
 	public void setEstacion(EstacionDelAnio estacion) {
-		this.estacion = estacion;
+		Quinta.estacion = estacion;
 	}
 
 	public Set<Espacio> getTiposEspacios() {

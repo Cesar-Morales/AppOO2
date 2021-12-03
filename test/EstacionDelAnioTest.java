@@ -15,9 +15,9 @@ class EstacionDelAnioTest {
 		verano = Verano.getSingletonInstance();
 		primavera = Primavera.getSingletonInstance();
 		//Cultivo que puede ser cultivado en primavera y otonio
-		c1 = new Cultivo("Apio", 40, 14, "Familia Apio", 18, 20, 12);
+		c1 = new Cultivo("Apio", 7.5, 14.0, 40.0, 18.0, "Familia Apio", 20.0, 12.0);
 		//Cultivo que puede ser cultivado en verano e invierno
-		c2 = new Cultivo("Pepino", 40, 8, "Familia Apio", 22, 10, 20);
+		c2 = new Cultivo("Pepino", 7.5, 8.0, 40.0, 22.0, "Familia Apio", 10.0, 20.0);
 	}
 	
 	@Test

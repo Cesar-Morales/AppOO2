@@ -7,11 +7,13 @@ public class QuintaTest {
 	private static String nombre = "Mi Quinta";
 	private static Quinta miQuinta;
 	private static Espacio espacio;
+	private static TipoDeSuelo tipoSuelo;
 	
 	@BeforeAll
 	public static void setUp() {
 		miQuinta = new Quinta(nombre);
-		espacio = new Espacio();
+		tipoSuelo = new BlackSoil();
+		espacio = new Espacio("Campo", tipoSuelo);
 		//probar creando quintas vacias
 		//quintas llenas
 		//distintas quintas para cada prueba sino se chocan los test

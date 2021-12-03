@@ -1,44 +1,48 @@
 public abstract class EstacionDelAnio {
 	
-	private Integer promedioHumedad,temperaturaMax,temperaturaMin, promedioLluvias, promedioViento;
+	private Double promedioHumedad,
+				   temperaturaMax,
+				   temperaturaMin, 
+				   promedioLluvias, 
+				   promedioViento;
 	
-	public int getPromedioLluvias() {
+	public Double getPromedioLluvias() {
 		return promedioLluvias;
 	}
 
-	public void setPromedioLluvias(int promedioLluvias) {
+	public void setPromedioLluvias(Double promedioLluvias) {
 		this.promedioLluvias = promedioLluvias;
 	}
 
-	public int getPromedioViento() {
+	public Double getPromedioViento() {
 		return promedioViento;
 	}
 
-	public void setPromedioViento(int promedioViento) {
+	public void setPromedioViento(Double promedioViento) {
 		this.promedioViento = promedioViento;
 	}
 
-	public int getPromedioHumedad() {
+	public Double getPromedioHumedad() {
 		return  promedioHumedad;
 	}
 
-	public void setPromedioHumedad(int  promedioHumedad) {
+	public void setPromedioHumedad(Double  promedioHumedad) {
 		this. promedioHumedad =  promedioHumedad;
 	}
 
-	public int getTemperaturaMax() {
+	public Double getTemperaturaMax() {
 		return temperaturaMax;
 	}
 
-	public void setTemperaturaMax(int temperaturaMax) {
+	public void setTemperaturaMax(Double temperaturaMax) {
 		this.temperaturaMax = temperaturaMax;
 	}
 
-	public int getTemperaturaMin() {
+	public Double getTemperaturaMin() {
 		return temperaturaMin;
 	}
 
-	public void setTemperaturaMin(int tempreraturaMin) {
+	public void setTemperaturaMin(Double tempreraturaMin) {
 		this.temperaturaMin = tempreraturaMin;
 	}
 

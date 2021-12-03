@@ -1,80 +1,133 @@
-//BEAN CULTIVO
 public class Cultivo {
-	
-	private String nombre;
-	private Integer durezaDondePuedeSerPlantado;
-	private Integer humedadDondePuedeSerPlantado;
-	private String familiaDeCultivos;
-	private Integer temperatura;
-	private Integer resistenciaDeCultivo;
-	private Integer cantidadRiego;
-	
-	public Cultivo(String nombre, Integer durezaDondePuedeSerPlantado, Integer humedadDondePuedeSerPlantado,
-			String familiaDeCultivos, Integer temperatura, Integer resistenciaDeCultivo, Integer cantidadRiego) {
-		super();
-		this.nombre = nombre;
-		this.durezaDondePuedeSerPlantado = durezaDondePuedeSerPlantado;
-		this.humedadDondePuedeSerPlantado = humedadDondePuedeSerPlantado;
-		this.familiaDeCultivos = familiaDeCultivos;
-		this.temperatura = temperatura;
-		this.resistenciaDeCultivo = resistenciaDeCultivo;
-		this.cantidadRiego = cantidadRiego;
-	}
+    
+    private String name;
+    private Double phOptimo;
+    private Double humedadOptima;
+    private Double durezaOptima;
+    private Double temperaturaOptima;
+    private String nombreFamilia;
+	private Double resistenciaDeCultivo;
+	private Double cantidadRiego;
 
-	public String getNombre() {
-		return nombre;
-	}
+    public Cultivo(String name, 
+                   Double phOptimo, 
+                   Double humedadOptima,
+                   Double durezaOptima,
+                   Double temperaturaOptima,
+                   String nombreFamilia,
+				   Double resistenciaDeCultivo, 
+				   Double cantidadRiego){
+    
+        setName(name);
+        setPhOptimo(phOptimo);
+        setHumedadOptima(humedadOptima);
+        setDurezaOptima(durezaOptima);
+        setTemperaturaOptima(temperaturaOptima);
+        setNombreFamilia(nombreFamilia);
+		setResistenciaDeCultivo(resistenciaDeCultivo);
+		setCantidadRiego(cantidadRiego);
+            
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
-	public Integer getDurezaDondePuedeSerPlantado() {
-		return durezaDondePuedeSerPlantado;
-	}
+    /**
+     * @return String return the name
+     */
+    public String getName() {
+        return name;
+    }
 
-	public void setDurezaDondePuedeSerPlantado(Integer durezaDondePuedeSerPlantado) {
-		this.durezaDondePuedeSerPlantado = durezaDondePuedeSerPlantado;
-	}
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Integer getHumedadDondePuedeSerPlantado() {
-		return humedadDondePuedeSerPlantado;
-	}
+    /**
+     * @return Double return the phOptimo
+     */
+    public Double getPhOptimo() {
+        return phOptimo;
+    }
 
-	public void setHumedadDondePuedeSerPlantado(Integer humedadDondePuedeSerPlantado) {
-		this.humedadDondePuedeSerPlantado = humedadDondePuedeSerPlantado;
-	}
+    /**
+     * @param phOptimo the phOptimo to set
+     */
+    public void setPhOptimo(Double phOptimo) {
+        this.phOptimo = phOptimo;
+    }
 
-	public String getFamiliaDeCultivos() {
-		return familiaDeCultivos;
-	}
+    /**
+     * @return Double return the humedadOptima
+     */
+    public Double getHumedadOptima() {
+        return humedadOptima;
+    }
 
-	public void setFamiliaDeCultivos(String familiaDeCultivos) {
-		this.familiaDeCultivos = familiaDeCultivos;
-	}
+    /**
+     * @param humedadOptima the humedadOptima to set
+     */
+    public void setHumedadOptima(Double humedadOptima) {
+        this.humedadOptima = humedadOptima;
+    }
 
-	public Integer getTemperatura() {
-		return temperatura;
-	}
+    /**
+     * @return Double return the durezaOptima
+     */
+    public Double getDurezaOptima() {
+        return durezaOptima;
+    }
 
-	public void setTemperatura(Integer temperatura) {
-		this.temperatura = temperatura;
-	}
+    /**
+     * @param durezaOptima the durezaOptima to set
+     */
+    public void setDurezaOptima(Double durezaOptima) {
+        this.durezaOptima = durezaOptima;
+    }
 
-	public Integer getResistenciaDeCultivo() {
+    /**
+     * @return Double return the temperaturaOptima
+     */
+    public Double getTemperaturaOptima() {
+        return temperaturaOptima;
+    }
+
+    /**
+     * @param temperaturaOptima the temperaturaOptima to set
+     */
+    public void setTemperaturaOptima(Double temperaturaOptima) {
+        this.temperaturaOptima = temperaturaOptima;
+    }
+
+    /**
+     * @return String return the nombreFamilia
+     */
+    public String getNombreFamilia() {
+        return nombreFamilia;
+    }
+
+    /**
+     * @param nombreFamilia the nombreFamilia to set
+     */
+    public void setNombreFamilia(String nombreFamilia) {
+        this.nombreFamilia = nombreFamilia;
+    }
+
+	public Double getResistenciaDeCultivo() {
 		return resistenciaDeCultivo;
 	}
 
-	public void setResistenciaDeCultivo(Integer resistenciaDeCultivo) {
+	public void setResistenciaDeCultivo(Double resistenciaDeCultivo) {
 		this.resistenciaDeCultivo = resistenciaDeCultivo;
 	}
 
-	public Integer getCantidadRiego() {
+	public Double getCantidadRiego() {
 		return cantidadRiego;
 	}
 
-	public void setCantidadRiego(Integer cantidadRiego) {
+	public void setCantidadRiego(Double cantidadRiego) {
 		this.cantidadRiego = cantidadRiego;
 	}
-		
+
 }

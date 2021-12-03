@@ -3,11 +3,11 @@ public class Primavera extends EstacionDelAnio {
 	private static Primavera PRIMAVERA;
 	
 	private Primavera() {
-		setTemperaturaMax(27);
-		setTemperaturaMin(14);
-		setPromedioHumedad(13);
-		setPromedioLluvias(26);
-		setPromedioViento(25);
+		setTemperaturaMax(27.0);
+		setTemperaturaMin(14.0);
+		setPromedioHumedad(13.0);
+		setPromedioLluvias(26.0);
+		setPromedioViento(25.0);
 	}
 
 	public static Primavera getSingletonInstance() {
@@ -22,8 +22,8 @@ public class Primavera extends EstacionDelAnio {
 
 	@Override
 	boolean cultivoApto(Cultivo c) {
-		int humedad = c.getHumedadDondePuedeSerPlantado();
-		if (humedad >= getPromedioHumedad()-3 && humedad <= getPromedioHumedad()+3) {			
+		Double humedad = c.getHumedadOptima();
+		if (humedad >= getPromedioHumedad()-3.0 && humedad <= getPromedioHumedad()+3.0) {			
 			return true;
 		}
 		return false;
