@@ -14,7 +14,13 @@ public class Espacio {
         this.cultivos = new ArrayList<>();
     }
 
-    public Boolean agregarCultivo(Cultivo cultivo) {
+    @Override
+	public String toString() {
+		return "Espacio [name=" + name + ", tipoDeSuelo=" + tipoDeSuelo + ", porcentajeDeHumedad=" + porcentajeDeHumedad
+				+ ", cultivos=" + cultivos + "]";
+	}
+
+	public Boolean agregarCultivo(Cultivo cultivo) {
         if(this.puedePlantarse(cultivo)){
             this.getCultivos().add(cultivo);
             return true;
