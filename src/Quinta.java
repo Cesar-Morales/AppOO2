@@ -1,13 +1,12 @@
 
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+//Esto tambien debería ser un singleton
 public class Quinta {
 
 	private Map<String,Espacio> espacios;
@@ -15,28 +14,12 @@ public class Quinta {
 	private Set<Espacio> tiposEspacios;
 	private String nombre;
 	
+	//Se crea con un mes cualquiera y luego los cambios de estado hacen que se acomode solo
 	public Quinta(String nombre) {
 		setNombre(nombre);
 		setEspacios(new HashMap<String, Espacio>());
-		setEstacion(calcularEstacion());
+		setEstacion(Invierno.getSingletonInstance());
 		setTiposEspacios(new HashSet<Espacio>());
-	}
-	
-	private EstacionDelAnio calcularEstacion() {
-		Date date = new Date();
-		int mes = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
-		switch(mes) {
-	    	case 1,2,3:
-		        return Verano.getSingletonInstance();
-		    case 4,5,6:
-		        return Otonio.getSingletonInstance();
-		    case 7,8,9:
-		        return Invierno.getSingletonInstance();
-		    case 10,11,12:
-		        return Primavera.getSingletonInstance();
-		    default:
-		    	return null;
-		 }
 	}
 	
 	void agregarEspacio(Espacio e) {
@@ -50,9 +33,10 @@ public class Quinta {
 	public List<Espacio> listarEspacios(){
 		return new ArrayList<Espacio>(tiposEspacios);
 	}
-	
-	
-	/* Getters and Setters */
+
+	public static boolean puedePlantarseEnEstacion(Cultivo cultivo) {
+		return estacion.puedePlantarseEnEstacion(cultivo);
+	}
 
 	public Map<String,Espacio> getEspacios() {
 		return espacios;
@@ -66,7 +50,7 @@ public class Quinta {
 		return estacion;
 	}
 
-	public void setEstacion(EstacionDelAnio estacion) {
+	public static void setEstacion(EstacionDelAnio estacion) {
 		Quinta.estacion = estacion;
 	}
 
@@ -85,7 +69,5 @@ public class Quinta {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	/* Fin Getters and Setters */
 
 }
