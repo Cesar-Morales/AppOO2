@@ -17,7 +17,7 @@ class EstacionDelAnioTest {
 		//Cultivo que puede ser cultivado en primavera y otonio
 		c1 = new Cultivo("Apio", 7.5, 14.0, 40.0, 18.0, "Familia Apio", 20.0, 12.0);
 		//Cultivo que puede ser cultivado en verano e invierno
-		c2 = new Cultivo("Pepino", 7.5, 8.0, 40.0, 22.0, "Familia Apio", 10.0, 20.0);
+		c2 = new Cultivo("Pepino", 7.5, 8.0, 40.0, 22.0, "Familia Pepino", 10.0, 20.0);
 	}
 	
 	@Test
