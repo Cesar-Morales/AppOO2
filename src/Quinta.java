@@ -1,17 +1,15 @@
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+//Esto tambien debería ser un singleton
 public class Quinta {
 	
 	private Map<String,Espacio> espacios;
@@ -20,35 +18,24 @@ public class Quinta {
 	private String nombre;
 	private static Set<Cultivo> cultivosEnSistema = new HashSet<>();
 	
+	//Se crea con un mes cualquiera y luego los cambios de estado hacen que se acomode solo
 	public Quinta(String nombre) {
 		setNombre(nombre);
 		setEspacios(new HashMap<String, Espacio>());
-		setEstacion(calcularEstacion());
+		setEstacion(Invierno.getSingletonInstance());
+		setTiposEspacios(new HashSet<Espacio>());
 	}
 	
-	private EstacionDelAnio calcularEstacion() {
-		Date date = new Date();
-		int mes = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
-		switch(mes) {
-	    	case 1,2,3:
-		        return Verano.getSingletonInstance();
-		    case 4,5,6:
-		        return Otonio.getSingletonInstance();
-		    case 7,8,9:
-		        return Invierno.getSingletonInstance();
-		    case 10,11,12:
-		        return Primavera.getSingletonInstance();
-		    default:
-		    	return null;
-		 }
+  public static boolean puedePlantarseEnEstacion(Cultivo cultivo) {
+		return estacion.puedePlantarseEnEstacion(cultivo);
 	}
-	
+  
 	static void agregarEspacio(Espacio e) {
 		tiposEspacios.add(e);
 		System.err.println("ESPACIO "+e+" AGREGADO CON EXITO");
 		System.out.println();
 	}
-	
+  
 	public void eliminarEspacio(Espacio e) {
 		tiposEspacios.remove(e);
 	}
@@ -80,7 +67,7 @@ public class Quinta {
 											Double.parseDouble(c[6]), 
 											Double.parseDouble(c[7]))
 										);
-	}
+  }
 	
 	private static void cargarCultivo() throws IOException {
 		String strCurrent;
@@ -94,6 +81,10 @@ public class Quinta {
 	}
 	
 	/* Getters and Setters */
+    
+  public Map<String,Espacio> getEspacios() {
+		return espacios;
+  }
 
 	public void setEspacios(Map<String,Espacio> espacios) {
 		this.espacios = espacios;
@@ -103,15 +94,13 @@ public class Quinta {
 		return estacion;
 	}
 
-	public void setEstacion(EstacionDelAnio estacion) {
+	public static void setEstacion(EstacionDelAnio estacion) {
 		Quinta.estacion = estacion;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	/* Fin Getters and Setters */
 
 	public static void main(String[] args) {
 		try {
