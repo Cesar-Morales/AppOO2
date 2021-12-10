@@ -130,4 +130,14 @@ public class Cultivo {
 		this.cantidadRiego = cantidadRiego;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Cultivo [name=" + name + ", phOptimo=" + phOptimo + ", humedadOptima=" + humedadOptima
+				+ ", durezaOptima=" + durezaOptima + ", temperaturaOptima=" + temperaturaOptima + ", nombreFamilia="
+				+ nombreFamilia + ", resistenciaDeCultivo=" + resistenciaDeCultivo + ", cantidadRiego=" + cantidadRiego
+				+ "]";
+	}
+
+	
 }

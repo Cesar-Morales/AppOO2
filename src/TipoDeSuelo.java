@@ -10,7 +10,7 @@ nuestrar clases concreatas y controlar.
 
 public interface TipoDeSuelo {
 
-    boolean puedePlantarse(Cultivo cultivo, Double humedad);
+    boolean puedePlantarse(Cultivo cultivo, double humedad);
     //Este creo que es un calculo más complicado, despues vemos si va o no.
     //Integer tiempoACosechar(List<Cultivo> cultivos);
 
