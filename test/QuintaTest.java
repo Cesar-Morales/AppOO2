@@ -39,7 +39,7 @@ public class QuintaTest {
 
 	@Test
 	public void listarEspacios() {
-		assertEquals(miQuinta.listarEspacios().size(),0);
+		assertEquals(Quinta.getListaEspacios().size(),0);
 		//miQuinta.agregarEspacio(espacio);
 		//System.out.println(miQuinta.listarEspacios());
 		//CON LA CLASE ESPACIO TERMINADA CONSULTAR SI ESPACIO QUE AGREGO ES EL MISMO

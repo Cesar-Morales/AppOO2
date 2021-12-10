@@ -40,10 +40,10 @@ public class Quinta {
 		tiposEspacios.remove(e);
 	}
 	
-	private static List<Espacio> getListaEspacios(){
+	public static List<Espacio> getListaEspacios(){
 		return new ArrayList<Espacio>(tiposEspacios);
 	}
-	
+
 	public static void listarEspacios() {
 		List<Espacio> espacios = getListaEspacios();
 		if (espacios.size() > 0) {			
@@ -90,12 +90,24 @@ public class Quinta {
 		this.espacios = espacios;
 	}
 
+	public Set<Espacio> getTiposEspacios() {
+		return tiposEspacios;
+	}
+
+	public void setTiposEspacios(Set<Espacio> tiposEspacios) {
+		this.tiposEspacios = tiposEspacios;
+	}
+
 	public static EstacionDelAnio getEstacion() {
 		return estacion;
 	}
 
 	public static void setEstacion(EstacionDelAnio estacion) {
 		Quinta.estacion = estacion;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
