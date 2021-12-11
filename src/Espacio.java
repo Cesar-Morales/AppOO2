@@ -4,20 +4,17 @@ public class Espacio {
 
     private String name;
     private TipoDeSuelo tipoDeSuelo;
-    private Double porcentajeDeHumedad;
     private List<Cultivo> cultivos;
 
     public Espacio(String name, TipoDeSuelo tipoDeSuelo) {
         setName(name);
         setTipoDeSuelo(tipoDeSuelo);
-        setPorcentajeDeHumedad(100.0);
         this.cultivos = new ArrayList<>();
     }
 
     @Override
 	public String toString() {
-		return "Espacio [name=" + name + ", tipoDeSuelo=" + tipoDeSuelo + ", porcentajeDeHumedad=" + porcentajeDeHumedad
-				+ ", cultivos=" + cultivos + "]";
+		return "Espacio [name=" + name + ", tipoDeSuelo=" + tipoDeSuelo + ", cultivos=" + cultivos + "]";
 	}
 
 	public Boolean agregarCultivo(Cultivo cultivo) {
@@ -39,7 +36,7 @@ public class Espacio {
     }
 
     private boolean puedePLantarseEnSuelo(Cultivo cultivo) {
-        return this.getTipoDeSuelo().puedePlantarse(cultivo, this.getPorcentajeDeHumedad());
+        return this.getTipoDeSuelo().puedePlantarse(cultivo);
     }
 
     //Hacemos que este listar cultivos sea un imprmir o que solo devuelva los cultivos
@@ -63,14 +60,6 @@ public class Espacio {
 
     public void setTipoDeSuelo(TipoDeSuelo tipoDeSuelo) {
         this.tipoDeSuelo = tipoDeSuelo;
-    }
-
-    public Double getPorcentajeDeHumedad() {
-        return porcentajeDeHumedad;
-    }
-
-    public void setPorcentajeDeHumedad(Double porcentajeDeHumedad) {
-        this.porcentajeDeHumedad = porcentajeDeHumedad;
     }
 
     public List<Cultivo> getCultivos() {

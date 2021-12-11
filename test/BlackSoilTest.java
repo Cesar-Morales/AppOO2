@@ -23,15 +23,16 @@ public class BlackSoilTest {
 
     @Test
     public void testPuedePlantarse() {
-        assertTrue(tipoSuelo.puedePlantarse(zanahoria, 100.0));
-        assertTrue(tipoSuelo.puedePlantarse(papa, 100.0));
-        assertFalse(tipoSuelo.puedePlantarse(papa, 80.0));
-        assertFalse(tipoSuelo.puedePlantarse(cebolla, 100.0));
-        assertFalse(tipoSuelo.puedePlantarse(cebolla, 70.0));
+        assertTrue(tipoSuelo.puedePlantarse(zanahoria));
+        assertTrue(tipoSuelo.puedePlantarse(papa));
+        assertFalse(tipoSuelo.puedePlantarse(cebolla));
     }
 
     @After
     public void tearDown() {
         tipoSuelo = null;
+        papa = null;
+        cebolla = null;
+        zanahoria = null;
     }
 }

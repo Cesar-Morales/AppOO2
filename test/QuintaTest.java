@@ -29,7 +29,7 @@ public class QuintaTest {
 	@Test
 	public void manipulandoEspacios() {
 		assertEquals(miQuinta.getTiposEspacios().size(),0);
-		miQuinta.agregarEspacio(espacio);
+		Quinta.agregarEspacio(espacio);
 		assertEquals(miQuinta.getTiposEspacios().size(),1);
 		miQuinta.eliminarEspacio(espacio);
 		assertEquals(miQuinta.getTiposEspacios().size(),0);
