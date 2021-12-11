@@ -1,4 +1,6 @@
+import java.util.Calendar;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class Invierno extends EstacionDelAnio {
 		
@@ -7,18 +9,20 @@ public class Invierno extends EstacionDelAnio {
 		private Invierno() {
 			super(18.0, 6.0, 0.0, 17.0, 20.0, List.of(7,8,9));
 		}
+
+		protected Invierno(Supplier<Calendar> suplier) {
+			super(18.0, 6.0, 0.0, 17.0, 20.0, List.of(7,8,9), suplier);
+		}
 		
 		public static Invierno getSingletonInstance() {
 			if (INVIERNO == null) {
 				INVIERNO = new Invierno();
-			} else {
-				System.out.println("Invierno creado");
 			}
 			return INVIERNO;
 		}
 
-		protected void cambiarASiguienteEstacion(){
-			Quinta.setEstacion(Primavera.getSingletonInstance());
+		protected EstacionDelAnio obtenerSiguienteEstacion(){
+			return Primavera.getSingletonInstance();
 		}
 
 		protected boolean evaluarEnSiguienteEstacion(Cultivo c){
@@ -26,7 +30,7 @@ public class Invierno extends EstacionDelAnio {
 		}
 
 		@Override
-		public boolean cultivoApto(Cultivo c) {
+		protected boolean cultivoApto(Cultivo c) {
 			Double riego = c.getCantidadRiego();
 			Double temperatura = c.getTemperaturaOptima();
 			if (riego >= getPromedioLluvias() && temperatura >= getTemperaturaMin()) {			

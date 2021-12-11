@@ -13,7 +13,7 @@ import java.util.Set;
 public class Quinta {
 	
 	private Map<String,Espacio> espacios;
-	private static EstacionDelAnio estacion;    //STATE
+	private static EstacionDelAnio estacion = Invierno.getSingletonInstance();    //STATE
 	private static Set<Espacio> tiposEspacios = new HashSet<Espacio>();
 	private String nombre;
 	private static Set<Cultivo> cultivosEnSistema = new HashSet<>();
@@ -22,7 +22,6 @@ public class Quinta {
 	public Quinta(String nombre) {
 		setNombre(nombre);
 		setEspacios(new HashMap<String, Espacio>());
-		setEstacion(Invierno.getSingletonInstance());
 		setTiposEspacios(new HashSet<Espacio>());
 	}
 	
@@ -40,10 +39,10 @@ public class Quinta {
 		tiposEspacios.remove(e);
 	}
 	
-	private static List<Espacio> getListaEspacios(){
+	public static List<Espacio> getListaEspacios(){
 		return new ArrayList<Espacio>(tiposEspacios);
 	}
-	
+
 	public static void listarEspacios() {
 		List<Espacio> espacios = getListaEspacios();
 		if (espacios.size() > 0) {			
@@ -90,12 +89,24 @@ public class Quinta {
 		this.espacios = espacios;
 	}
 
+	public Set<Espacio> getTiposEspacios() {
+		return tiposEspacios;
+	}
+
+	public void setTiposEspacios(Set<Espacio> tiposEspacios) {
+		this.tiposEspacios = tiposEspacios;
+	}
+
 	public static EstacionDelAnio getEstacion() {
 		return estacion;
 	}
 
 	public static void setEstacion(EstacionDelAnio estacion) {
 		Quinta.estacion = estacion;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {

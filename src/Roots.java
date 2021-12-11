@@ -13,7 +13,7 @@ public class Roots implements TipoDeSuelo {
     }
 
 	@Override
-	public boolean puedePlantarse(Cultivo cultivo, double humedad) {
+	public boolean puedePlantarse(Cultivo cultivo) {
 		return cultivosAptos.stream().anyMatch(c -> c.contains(cultivo.getName().toLowerCase()));
 	}
 

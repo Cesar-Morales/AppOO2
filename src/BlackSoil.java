@@ -9,8 +9,8 @@ public class BlackSoil implements TipoDeSuelo{
     }
 
 	@Override
-	public boolean puedePlantarse(Cultivo cultivo, double humedad) {
-		return humedad >= cultivo.getHumedadOptima() && cultivo.getPhOptimo() >= this.getPhSuelo();
+	public boolean puedePlantarse(Cultivo cultivo) {
+		return cultivo.getPhOptimo() >= this.getPhSuelo();
 	}
 
 

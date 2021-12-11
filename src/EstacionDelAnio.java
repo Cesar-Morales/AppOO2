@@ -1,5 +1,6 @@
 import java.util.Calendar;
 import java.util.List;
+import java.util.function.Supplier;
 
 public abstract class EstacionDelAnio {
 
@@ -11,6 +12,8 @@ public abstract class EstacionDelAnio {
 				
 	private List<Integer> meses;
 
+	private static Supplier<Calendar> currentTimeSupplier = Calendar::getInstance;
+
 	//Refactorizados contructores de subclases
 	protected EstacionDelAnio(Double temperaturaMax,
 							  Double temperaturaMin,
@@ -18,6 +21,7 @@ public abstract class EstacionDelAnio {
 							  Double promedioLluvias,
 							  Double promedioViento,
 							  List<Integer> meses){
+		
 		setTemperaturaMax(temperaturaMax);
 		setTemperaturaMin(temperaturaMin);
 		setPromedioHumedad(promedioHumedad);
@@ -25,6 +29,61 @@ public abstract class EstacionDelAnio {
 		setPromedioViento(promedioViento);
 		setMeses(meses);
 	}
+
+	protected EstacionDelAnio(Double temperaturaMax,
+							  Double temperaturaMin,
+							  Double promedioHumedad,
+							  Double promedioLluvias,
+							  Double promedioViento,
+							  List<Integer> meses,
+							  Supplier<Calendar> currentTimeSupplier){
+		this(temperaturaMax,
+		temperaturaMin,
+		promedioHumedad,
+		promedioLluvias,
+		promedioViento,
+		meses);
+		setCurrentTimeSupplier(currentTimeSupplier);
+	}
+
+	//Refactorizado move method, renombrado, extarct method y replace temp with query.
+	//Hablar porque el singleton está en cada clase concreta y no en la bases.
+	//Hacer las transiciones en las sublcases para sacar el switch.
+
+	protected boolean terminoLaEstacion(){
+		return getMeses().contains(calcularMes()) ? false : true;
+	}
+
+	protected Calendar calendarioActual(){
+		return currentTimeSupplier.get();
+	}
+
+	protected Integer calcularMes(){
+		return calendarioActual().get(Calendar.MONTH) + 1;
+	}
+
+	//Nuevo template method
+	public boolean puedePlantarseEnEstacion(Cultivo c){
+		if(terminoLaEstacion()){
+			return evaluarEnSiguienteEstacion(c, cambiarYObtenerSiguienteEstacion());
+		}
+		else{
+			return cultivoApto(c);
+		}
+	}
+
+	protected EstacionDelAnio cambiarYObtenerSiguienteEstacion(){
+		Quinta.setEstacion(obtenerSiguienteEstacion());
+		return obtenerSiguienteEstacion();
+	}
+
+	protected abstract EstacionDelAnio obtenerSiguienteEstacion();
+
+	protected boolean evaluarEnSiguienteEstacion(Cultivo c, EstacionDelAnio estacion){
+		return estacion.puedePlantarseEnEstacion(c);
+	}
+
+	protected abstract boolean cultivoApto(Cultivo c);
 	
 	protected Double getPromedioLluvias() {
 		return promedioLluvias;
@@ -74,41 +133,12 @@ public abstract class EstacionDelAnio {
         this.meses = meses;
     }
 
-	protected Calendar calendarioActual(){
-		return Calendar.getInstance();
-	}
+    public Supplier<Calendar> getCurrentTimeSupplier() {
+        return currentTimeSupplier;
+    }
 
-	protected Integer calcularMes(){
-		return calendarioActual().get(Calendar.MONTH) + 1;
-	}
-
-	//Refactorizado move method, renombrado, extarct method y replace temp with query.
-	//Hablar porque el singleton está en cada clase concreta y no en la bases.
-	//Hacer las transiciones en las sublcases para sacar el switch.
-
-	protected boolean terminoLaEstacion(){
-		return getMeses().contains(calcularMes()) ? false : true;
-	}
-
-	//Nuevo template method
-	public boolean puedePlantarseEnEstacion(Cultivo c){
-		if(terminoLaEstacion()){
-			cambiarASiguienteEstacion();
-			return evaluarEnSiguienteEstacion(c);
-		}
-		else{
-			return cultivoApto(c);
-		}
-	}
-
-	protected abstract boolean cultivoApto(Cultivo c);
-
-	protected abstract void cambiarASiguienteEstacion();
-
-	protected abstract boolean evaluarEnSiguienteEstacion(Cultivo c);
-
-	
-
-	
+    public void setCurrentTimeSupplier(Supplier<Calendar> newCurrentTimeSupplier) {
+        currentTimeSupplier = newCurrentTimeSupplier;
+    }	
 
 }

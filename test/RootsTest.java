@@ -20,14 +20,16 @@ public class RootsTest {
 
     @Test
     public void testPuedePlantarse() {
-        assertTrue(tipoSuelo.puedePlantarse(papa, 0.0));
-        assertTrue(tipoSuelo.puedePlantarse(papa, 100.0));
-        assertFalse(tipoSuelo.puedePlantarse(cebolla, 0.0));
+        assertTrue(tipoSuelo.puedePlantarse(papa));
+        assertTrue(tipoSuelo.puedePlantarse(papa));
+        assertFalse(tipoSuelo.puedePlantarse(cebolla));
     }
 
     @After
     public void tearDown() {
         tipoSuelo = null;
+        papa = null;
+        cebolla = null;
     }
 
 }

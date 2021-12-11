@@ -1,4 +1,6 @@
+import java.util.Calendar;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class Verano extends EstacionDelAnio {
 	
@@ -7,18 +9,20 @@ public class Verano extends EstacionDelAnio {
 	private Verano() {
 		super(35.0, 19.0, 51.0, 31.0, 17.0, List.of(1,2,3));
 	}
+
+	protected Verano(Supplier<Calendar> suplier) {
+		super(35.0, 19.0, 51.0, 31.0, 17.0, List.of(1,2,3), suplier);
+	}
 	
 	public static Verano getSingletonInstance(){
 		if ( VERANO == null ) {
 			VERANO = new Verano();
-		} else {
-			System.out.println("Verano creado");
 		}
 		return VERANO;
 	}
 
-	protected void cambiarASiguienteEstacion(){
-		Quinta.setEstacion(Otonio.getSingletonInstance());
+	protected EstacionDelAnio obtenerSiguienteEstacion(){
+		return Otonio.getSingletonInstance();
 	}
 
 	protected boolean evaluarEnSiguienteEstacion(Cultivo c){
@@ -26,7 +30,7 @@ public class Verano extends EstacionDelAnio {
 	}
 
 	@Override
-	public boolean cultivoApto(Cultivo c) {
+	protected boolean cultivoApto(Cultivo c) {
 		Double temperatura = c.getTemperaturaOptima();
 		if (temperatura >= getTemperaturaMin() && temperatura <= getTemperaturaMax()) {			
 			return true;
