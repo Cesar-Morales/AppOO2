@@ -14,15 +14,13 @@ import java.util.Set;
 
 public class Quinta {
 	
-	private Map<String,Espacio> espacios;
 	private static EstacionDelAnio estacion;    //STATE
-	private static Set<Espacio> tiposEspacios = new HashSet<Espacio>();
+	private static List<Espacio> espacios = new ArrayList<>();
 	private String nombre;
 	private static Set<Cultivo> cultivosEnSistema = new HashSet<>();
 	
 	public Quinta(String nombre) {
 		setNombre(nombre);
-		setEspacios(new HashMap<String, Espacio>());
 		setEstacion(calcularEstacion());
 	}
 	
@@ -43,18 +41,29 @@ public class Quinta {
 		 }
 	}
 	
+	public void agregarCultivoAEspacio(String nombre, Cultivo c) {
+		boolean agregado = false;
+		for(Espacio e: espacios) {
+			if(e.getName() == nombre) {
+				agregado = true;
+				e.agregarCultivo(c);
+			}
+		}
+		if(!agregado) System.out.println("Nombre del cultivo desconocido");
+	}
+	
 	static void agregarEspacio(Espacio e) {
-		tiposEspacios.add(e);
+		espacios.add(e);
 		System.err.println("ESPACIO "+e+" AGREGADO CON EXITO");
 		System.out.println();
 	}
 	
 	public void eliminarEspacio(Espacio e) {
-		tiposEspacios.remove(e);
+		espacios.remove(e);
 	}
 	
 	private static List<Espacio> getListaEspacios(){
-		return new ArrayList<Espacio>(tiposEspacios);
+		return new ArrayList<Espacio>(espacios);
 	}
 	
 	public static void listarEspacios() {
@@ -95,9 +104,6 @@ public class Quinta {
 	
 	/* Getters and Setters */
 
-	public void setEspacios(Map<String,Espacio> espacios) {
-		this.espacios = espacios;
-	}
 
 	public static EstacionDelAnio getEstacion() {
 		return estacion;
