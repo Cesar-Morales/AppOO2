@@ -1,26 +1,36 @@
+import java.util.Calendar;
+import java.util.List;
+import java.util.function.Supplier;
+
 public class Otonio extends EstacionDelAnio {
 	
 	private static Otonio OTONIO;
 	
 	private Otonio() {
-		setTemperaturaMax(21.0);
-		setTemperaturaMin(9.0);
-		setPromedioHumedad(13.0);
-		setPromedioLluvias(26.0);
-		setPromedioViento(18.0);
+		super(21.0, 9.0, 13.0, 26.0, 18.0, List.of(4,5,6));
+	}
+
+	protected Otonio(Supplier<Calendar> suplier) {
+		super(21.0, 9.0, 13.0, 26.0, 18.0, List.of(4,5,6), suplier);
 	}
 	
 	public static Otonio getSingletonInstance() {
 		if (OTONIO == null) {
 			OTONIO = new Otonio();
-		} else {
-			System.out.println("Otonio creado");
 		}
 		return OTONIO;
 	}
 
+	protected EstacionDelAnio obtenerSiguienteEstacion(){
+		return Invierno.getSingletonInstance();
+	}
+
+	protected boolean evaluarEnSiguienteEstacion(Cultivo c){
+		return Invierno.getSingletonInstance().puedePlantarseEnEstacion(c);
+	}
+
 	@Override
-	boolean cultivoApto(Cultivo c) {
+	protected boolean cultivoApto(Cultivo c) {
 		Double resistencia  = c.getResistenciaDeCultivo();
 		if (resistencia >= getPromedioViento()) {			
 			return true;
