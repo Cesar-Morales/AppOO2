@@ -21,7 +21,6 @@ public class Quinta {
 	//Se crea con un mes cualquiera y luego los cambios de estado hacen que se acomode solo
 	public Quinta(String nombre) {
 		setNombre(nombre);
-		setEstacion(calcularEstacion());
 	}
 	
   public static boolean puedePlantarseEnEstacion(Cultivo cultivo) {
@@ -91,19 +90,7 @@ public class Quinta {
 	
 	/* Getters and Setters */
     
-  public Map<String,Espacio> getEspacios() {
-		return espacios;
-  }
-
-
-	public Set<Espacio> getTiposEspacios() {
-		return tiposEspacios;
-	}
-
-	public void setTiposEspacios(Set<Espacio> tiposEspacios) {
-		this.tiposEspacios = tiposEspacios;
-	}
-
+	
 	public static EstacionDelAnio getEstacion() {
 		return estacion;
 	}
