@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 public class Espacio {
 
@@ -14,25 +15,16 @@ public class Espacio {
 
     @Override
 	public String toString() {
-		return "Espacio [name=" + name + ", tipoDeSuelo=" + tipoDeSuelo + ", cultivos=" + cultivos + "]";
+		return "Espacio [name=" + name + ", cultivos=" + Arrays.toString(cultivos.toArray()) + "]";
 	}
 
 	public Boolean agregarCultivo(Cultivo cultivo) {
-        if(this.puedePlantarse(cultivo)){
+        if(puedePLantarseEnSuelo(cultivo)){
             this.getCultivos().add(cultivo);
             return true;
         }
         else
             return false;
-    }
-
-    private boolean puedePlantarse(Cultivo cultivo) {
-        return puedePlantarseEnEstacion(cultivo) && 
-               puedePLantarseEnSuelo(cultivo);
-    }
-
-    private boolean puedePlantarseEnEstacion(Cultivo cultivo) {
-        return Quinta.puedePlantarseEnEstacion(cultivo);
     }
 
     private boolean puedePLantarseEnSuelo(Cultivo cultivo) {

@@ -133,10 +133,7 @@ public class Cultivo {
 
 	@Override
 	public String toString() {
-		return "Cultivo [name=" + name + ", phOptimo=" + phOptimo + ", humedadOptima=" + humedadOptima
-				+ ", durezaOptima=" + durezaOptima + ", temperaturaOptima=" + temperaturaOptima + ", nombreFamilia="
-				+ nombreFamilia + ", resistenciaDeCultivo=" + resistenciaDeCultivo + ", cantidadRiego=" + cantidadRiego
-				+ "]";
+		return "name=" + name;
 	}
 
 	
