@@ -2,6 +2,8 @@
 
 Este proyecto tiene como fin el desarrollo de un framework. El mismo permite crear una familia de aplicaciones las cuales sirven para administrar ciertos puntos pertienentes al manejo de un campo, controlar los tipos de cultivos que se pueden plantar en los distintos espacios de una quinta y los cultivos que hay en los distintos suelos.
 
+![Alt text](https://github.com/Cesar-Morales/AppOO2/blob/main/Dise%C3%B1o_del_framework.jpg "a title")
+
 ## Instanciacion del Framework
 
 Para insanciar el framework debemos especializar dos partes del framework: 
@@ -59,3 +61,6 @@ Para insanciar el framework debemos especializar dos partes del framework:
       }
 
 > Ya podemos compilar nuestra clase MyApp y correrla! Siga las instrucciones del menu para controlar las acciones que desea realizar en su quinta.
+
+## Historias de Usuario
+[Trello](https://trello.com/b/ly3ARlfo/finalobjetos2-abril-jara-y-cesar-morales)
