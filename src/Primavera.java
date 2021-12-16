@@ -20,13 +20,10 @@ public class Primavera extends EstacionDelAnio {
 		}
 		return PRIMAVERA;
 	}
-	
-	protected EstacionDelAnio obtenerSiguienteEstacion(){
-		return Verano.getSingletonInstance();
-	}
 
-	protected boolean evaluarEnSiguienteEstacion(Cultivo c){
-		return Verano.getSingletonInstance().puedePlantarseEnEstacion(c);
+	protected boolean evaluarEnSiguienteEstacion(Cultivo cultivo){
+		Quinta.setEstacion(Verano.getSingletonInstance());
+		return Verano.getSingletonInstance().puedePlantarseEnEstacion(cultivo);
 	}
 
 	@Override

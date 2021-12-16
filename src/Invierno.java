@@ -21,12 +21,9 @@ public class Invierno extends EstacionDelAnio {
 			return INVIERNO;
 		}
 
-		protected EstacionDelAnio obtenerSiguienteEstacion(){
-			return Primavera.getSingletonInstance();
-		}
-
-		protected boolean evaluarEnSiguienteEstacion(Cultivo c){
-			return Primavera.getSingletonInstance().puedePlantarseEnEstacion(c);
+		protected boolean evaluarEnSiguienteEstacion(Cultivo cultivo){
+			Quinta.setEstacion(Primavera.getSingletonInstance());
+			return Primavera.getSingletonInstance().puedePlantarseEnEstacion(cultivo);
 		}
 
 		@Override

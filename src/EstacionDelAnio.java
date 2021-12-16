@@ -58,25 +58,16 @@ public abstract class EstacionDelAnio {
 		return calendarioActual().get(Calendar.MONTH) + 1;
 	}
 
-	public boolean puedePlantarseEnEstacion(Cultivo c){
+	public boolean puedePlantarseEnEstacion(Cultivo cultivo){
 		if(terminoLaEstacion()){
-			return evaluarEnSiguienteEstacion(c, cambiarYObtenerSiguienteEstacion());
+			return evaluarEnSiguienteEstacion(cultivo);
 		}
 		else{
-			return cultivoApto(c);
+			return cultivoApto(cultivo);
 		}
 	}
 
-	protected EstacionDelAnio cambiarYObtenerSiguienteEstacion(){
-		Quinta.setEstacion(obtenerSiguienteEstacion());
-		return obtenerSiguienteEstacion();
-	}
-
-	protected abstract EstacionDelAnio obtenerSiguienteEstacion();
-
-	protected boolean evaluarEnSiguienteEstacion(Cultivo c, EstacionDelAnio estacion){
-		return estacion.puedePlantarseEnEstacion(c);
-	}
+	protected abstract boolean evaluarEnSiguienteEstacion(Cultivo cultivo);
 
 	protected abstract boolean cultivoApto(Cultivo c);
 	
@@ -120,19 +111,15 @@ public abstract class EstacionDelAnio {
 		this.temperaturaMin = temperaturaMin;
 	}
 
-	public List<Integer> getMeses() {
+	protected List<Integer> getMeses() {
         return meses;
     }
 
-    public void setMeses(List<Integer> meses) {
+    protected void setMeses(List<Integer> meses) {
         this.meses = meses;
     }
 
-    public Supplier<Calendar> getCurrentTimeSupplier() {
-        return currentTimeSupplier;
-    }
-
-    public void setCurrentTimeSupplier(Supplier<Calendar> newCurrentTimeSupplier) {
+    protected void setCurrentTimeSupplier(Supplier<Calendar> newCurrentTimeSupplier) {
         currentTimeSupplier = newCurrentTimeSupplier;
     }	
 

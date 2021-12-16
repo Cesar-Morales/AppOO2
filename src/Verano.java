@@ -21,12 +21,9 @@ public class Verano extends EstacionDelAnio {
 		return VERANO;
 	}
 
-	protected EstacionDelAnio obtenerSiguienteEstacion(){
-		return Otonio.getSingletonInstance();
-	}
-
-	protected boolean evaluarEnSiguienteEstacion(Cultivo c){
-		return Otonio.getSingletonInstance().puedePlantarseEnEstacion(c);
+	protected boolean evaluarEnSiguienteEstacion(Cultivo cultivo){
+		Quinta.setEstacion(Otonio.getSingletonInstance());
+		return Otonio.getSingletonInstance().puedePlantarseEnEstacion(cultivo);
 	}
 
 	@Override
