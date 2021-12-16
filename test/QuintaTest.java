@@ -1,4 +1,7 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -10,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class QuintaTest {
+
 	private String nombre = "Mi Quinta";
 	private Quinta miQuinta;
 	private Espacio espacio;
@@ -38,8 +42,9 @@ public class QuintaTest {
 		espacio = new Espacio("Campo", tipoSuelo);
 		miQuinta = new Quinta(nombre, otonio);
 	}
-	
+
 	@Test
+
 	public void agregarCultivoAEspacioInexistenteTest() {
 		assertFalse(miQuinta.agregarCultivoAEspacio("Campo", sePuedePlantar));
 	}

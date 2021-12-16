@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //Esto tambien debería ser un singleton
 public class Quinta {
@@ -22,6 +24,7 @@ public class Quinta {
 		return estacion.puedePlantarseEnEstacion(cultivo);
 	}
 	
+
 	// HACER METODO PARA QUE IMPRIMA ALGO EN CASO DE NO ENCONTRAR EL NOMBRE
 	public Boolean agregarCultivoAEspacio(String nombre, Cultivo cultivo) {
 		boolean agregado = false;

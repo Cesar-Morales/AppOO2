@@ -13,5 +13,4 @@ public class BlackSoil implements TipoDeSuelo{
 		return cultivo.getPhOptimo() >= this.getPhSuelo();
 	}
 
-
 }

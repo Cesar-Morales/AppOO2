@@ -21,19 +21,12 @@ public class EspacioTest {
         espacio = new Espacio("Campo", rootFamily);
     }
 
-    //Acá debería tambien probar el constructor de Espacio para ver que el nombre
-    //Es correcto y el tipo de suelo no está vacio?
-
-
     @Test
     public void testAgregarCultivo() {
         assertTrue(espacio.agregarCultivo(papa));
         assertFalse(espacio.agregarCultivo(cebolla));
     }
 
-    //No se si esto va en el agregar o el listar
-    //El listar es directamente devolver una lista
-    //No hay mucho que probar
     public void testListaCultivos(){
         assertEquals(0, espacio.listaDeCultivos().size());
         espacio.agregarCultivo(papa);
