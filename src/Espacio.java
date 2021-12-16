@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 public class Espacio {
 
@@ -14,11 +15,11 @@ public class Espacio {
 
     @Override
 	public String toString() {
-		return "Espacio [name=" + name + ", tipoDeSuelo=" + tipoDeSuelo + ", cultivos=" + cultivos + "]";
+		return "Espacio [name=" + name + ", cultivos=" + Arrays.toString(cultivos.toArray()) + "]";
 	}
 
 	public Boolean agregarCultivo(Cultivo cultivo) {
-        if(this.puedePlantarse(cultivo)){
+        if(puedePLantarseEnSuelo(cultivo)){
             this.getCultivos().add(cultivo);
             return true;
         }
@@ -26,22 +27,10 @@ public class Espacio {
             return false;
     }
 
-    private boolean puedePlantarse(Cultivo cultivo) {
-        return puedePlantarseEnEstacion(cultivo) && 
-               puedePLantarseEnSuelo(cultivo);
-    }
-
-    private boolean puedePlantarseEnEstacion(Cultivo cultivo) {
-        return Quinta.puedePlantarseEnEstacion(cultivo);
-    }
-
     private boolean puedePLantarseEnSuelo(Cultivo cultivo) {
         return this.getTipoDeSuelo().puedePlantarse(cultivo);
     }
-
-    //Hacemos que este listar cultivos sea un imprmir o que solo devuelva los cultivos
-    //Y que la clase quinta los imprima? Tal vez esto puede ser una parte del refactoring.
-    //Porque esto es literalmente un getter.
+    
     public List<Cultivo> listaDeCultivos() {
         return this.getCultivos();
     }

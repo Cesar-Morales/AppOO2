@@ -2,66 +2,78 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.Calendar;
+import java.util.function.Supplier;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class QuintaTest {
-	
-	
-	private String nombreQuinta = "Mi Quinta";
-	private String nombreEspacio = "Mi Espacio";
+
+	private String nombre = "Mi Quinta";
 	private Quinta miQuinta;
-	private TipoDeSuelo tipoSuelo;
 	private Espacio espacio;
-	private Cultivo papa, apio;
+	private TipoDeSuelo tipoSuelo;
+	private Calendar epocaOtonio;
+	private Supplier<Calendar> fixedSuplierOtonio;
+	private Cultivo sePuedePlantar, noSePuedePlantar;
+	private EstacionDelAnio otonio;
+	private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+	private PrintStream originalOut = System.out;
 	
 	@Before
 	public void setUp() {
-		miQuinta = new Quinta(nombreQuinta);
-		tipoSuelo = new BlackSoil();
+		System.setOut(new PrintStream(outContent));
+
+		epocaOtonio = Calendar.getInstance();
+		epocaOtonio.set(Calendar.MONTH, 4);
+		fixedSuplierOtonio = () -> epocaOtonio;
+
+		sePuedePlantar = new Cultivo("Papa", 7.5, 12.0, 32.0, 2.0, "Familia Pepino", 19.0, 20.0);
+		noSePuedePlantar = new Cultivo("Apio", 8.5, 6.0, 6.0, 24.0, "Familia Apio", 9.0, 18.0);
+
+		otonio = new Otonio(fixedSuplierOtonio);
+		
+		tipoSuelo = new Roots();
 		espacio = new Espacio("Campo", tipoSuelo);
-        papa = new Cultivo("Papa1", 2.6, 25.0, 49.0, 45.0, "Familia raiz1", 20.0, 25.0);
-		apio = new Cultivo("Apio", 9.0, 12.0, 40.0, 20.0, "Familia Apio", 20.0, 19.0);
+		miQuinta = new Quinta(nombre, otonio);
 	}
 
 	@Test
-	public void agregarVerdurasAQuintas() {
-		assertEquals(espacio.listaDeCultivos().size(), 0);
-		assertFalse(miQuinta.agregarCultivoAEspacio("Campo asdasd", papa));
-		assertTrue(miQuinta.agregarCultivoAEspacio(nombreEspacio, apio));
-		assertEquals(espacio.listaDeCultivos().size(), 1);
-		miQuinta.eliminarEspacio(espacio);
+
+	public void agregarCultivoAEspacioInexistenteTest() {
+		assertFalse(miQuinta.agregarCultivoAEspacio("Campo", sePuedePlantar));
 	}
-	
-	@SuppressWarnings("static-access")
+
 	@Test
-	public void manipulandoEspacios() {
-		assertEquals(miQuinta.getListaEspacios().size(),0);
+	public void agregarCultivoAEspacioExistenteTest() {
 		miQuinta.agregarEspacio(espacio);
-		assertEquals(miQuinta.getListaEspacios().size(), 1);
-		assertTrue(miQuinta.eliminarEspacio(espacio));
-		assertEquals(miQuinta.getListaEspacios().size(),0);
-		miQuinta.eliminarEspacio(espacio);
-		assertEquals(miQuinta.getListaEspacios().size(),0);
+		assertTrue(miQuinta.agregarCultivoAEspacio("Campo", sePuedePlantar));
+		assertFalse(miQuinta.agregarCultivoAEspacio("Campo", noSePuedePlantar));
 	}
 
 	@Test
-	public void listarEspacios() {
-		System.out.println("lista "+espacio);
-		assertEquals(miQuinta.getListaEspacios().size(),0);
-		//miQuinta.agregarEspacio(espacio);
-		//System.out.println(miQuinta.listarEspacios());
-		//CON LA CLASE ESPACIO TERMINADA CONSULTAR SI ESPACIO QUE AGREGO ES EL MISMO
+	public void listarEspaciosVacioTest() {
+		miQuinta.listarEspacios();
+		assertEquals("NO HAY ESPACIOS CARGADOS\n", outContent.toString());
+	}
+
+	@Test
+	public void listarEspaciosTest() {
+		miQuinta.agregarEspacio(espacio);
+		miQuinta.agregarCultivoAEspacio("Campo", sePuedePlantar);
+		miQuinta.listarEspacios();
+		assertEquals("Espacio [name=Campo, cultivos=[name=Papa]]\n", outContent.toString());
 	}
 	
 	@After
-    public void tearDown() {
+	public void tearDown() {
 		miQuinta = null;
-		tipoSuelo = null;
-		espacio = null;
-		papa = null;
-		apio = null;
-    }
-	
+		System.setOut(originalOut);
+	}
+
 }

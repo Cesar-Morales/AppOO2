@@ -1,8 +1,23 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Menu {
 
-	public static void initApp() {
+	private Quinta quinta;
+	private Set<Cultivo> cultivosEnSistema = new HashSet<>();
+
+	public Menu(Quinta quinta){
+		this.quinta = quinta;
+	}
+
+	public void initApp() throws IOException{
+		cargarCultivos();
 		while(true) {			
 			imprimirMenu();
 			int opc = recibirOpcion();
@@ -14,13 +29,13 @@ public class Menu {
 		}
 	}
 	
-	private static void hacerTarea(int opc) {
+	private void hacerTarea(int opc) {
 		switch(opc) {
     	case 1:
-    		Quinta.listarEspacios();
+			quinta.listarEspacios();
     		break;
 	    case 2:
-	    	agregarEspacio();
+	    	agregarCultivoAEspacio();
 	    	break;
 	    default:
 	    	System.err.println("OPCION INVALIDA");
@@ -28,31 +43,37 @@ public class Menu {
 		}
 	}
 
-	private static void agregarEspacio() {
+	private void agregarCultivoAEspacio() {
 		@SuppressWarnings("resource")
 		Scanner teclado = new Scanner (System.in);
-		Espacio e;
+		Cultivo cultivo;
+		
 		System.out.println("|----------------------------------------|");
-		System.out.println("| Ingrese el nombre de espacio:          |");
+		System.out.println("| Ingrese el nombre del cultivo:         |");
 		System.out.println("|----------------------------------------|");
-		String nombre = teclado.next();
-		System.out.println("|----------------------------------------|");
-		System.out.println("| Ingrese el tipo de suelo :             |");
-		System.out.println("| (1) Roots                              |");
-		System.out.println("| (2) Black Soil                         |");
-		System.out.println("|----------------------------------------|");
-		Integer num = Integer.parseInt(teclado.next());
-		//ESTO HAY QUE CAMBIAR POR CASE Y VER COMO LEVANTAR LOS TIPOS DE SUELO PARA QUE LO MUESTRE EL PRINT EN FORMA DINAMICA
-		//TAMBIEN HAY QUE CHEQUEAR QUE LO QUE INGRESE SEA CORRECTO (CON EL MISMO CASE)
-		if(num == 1) {
-			e = new Espacio(nombre, new Roots());
-		} else {
-			e = new Espacio(nombre, new BlackSoil());
+		cultivosEnSistema.forEach(System.out::println);
+		String nombreCultivo = teclado.next();
+		try{
+			cultivo = cultivosEnSistema.stream()
+					.filter(c -> c.getName().equals(nombreCultivo))
+					.findFirst().orElseThrow();
+			System.out.println("|----------------------------------------|");
+			System.out.println("| Ingrese el nombre del espacio:         |");
+			System.out.println("|----------------------------------------|");
+			String nombreEspacio = teclado.next();
+			if(quinta.agregarCultivoAEspacio(nombreEspacio, cultivo)){
+				System.out.println("El cultivo se agregó correctamente");
+			}
+			else{
+				System.out.println("El cultivo no pasa las condiciones necesarias para agregarse");
+			}
 		}
-		Quinta.agregarEspacio(e);
+		catch (NoSuchElementException e){
+			System.out.println("El cultivo ingresado es incorrecto");
+		}
 	}
 
-	private static int recibirOpcion() {
+	private int recibirOpcion() {
 		int opc;
 		@SuppressWarnings("resource")
 		Scanner teclado = new Scanner (System.in);	
@@ -64,7 +85,7 @@ public class Menu {
 		return opc;
 	}
 
-	private static void imprimirMenu() {
+	private void imprimirMenu() {
 		System.out.println(" ----------------------------------------");
 		System.out.println("| Framework para el control de Quintas:  |");
 		System.out.println("|----------------------------------------|");
@@ -72,8 +93,32 @@ public class Menu {
 		System.out.println("|----------------------------------------|");
 		System.out.println("| (0) Salir                              |");
 		System.out.println("| (1) Listar Espacios                    |");
-		System.out.println("| (2) Agregar Espacio                    |");
+		System.out.println("| (2) Agregar Cultivo a Espacio          |");
 		System.out.println(" ----------------------------------------");
 		System.out.println();
+	}
+
+	private void agregarCultivoSistema(String[] c) {
+		cultivosEnSistema.add(new Cultivo(
+											c[0], 
+											Double.parseDouble(c[1]), 
+											Double.parseDouble(c[2]), 
+											Double.parseDouble(c[3]), 
+											Double.parseDouble(c[4]), 
+											c[5], 
+											Double.parseDouble(c[6]), 
+											Double.parseDouble(c[7]))
+										);
+ 	 }
+	
+	private void cargarCultivos() throws IOException {
+		String strCurrent;
+		String[] strSplit;
+		BufferedReader buffer = new BufferedReader(new FileReader(new File("cultivo").getAbsolutePath()));
+		while ((strCurrent = buffer.readLine()) != null) {
+			strSplit = strCurrent.split(",");
+			agregarCultivoSistema(strSplit);
+		}
+		buffer.close();
 	}
 }
