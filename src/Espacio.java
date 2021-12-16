@@ -30,10 +30,7 @@ public class Espacio {
     private boolean puedePLantarseEnSuelo(Cultivo cultivo) {
         return this.getTipoDeSuelo().puedePlantarse(cultivo);
     }
-
-    //Hacemos que este listar cultivos sea un imprmir o que solo devuelva los cultivos
-    //Y que la clase quinta los imprima? Tal vez esto puede ser una parte del refactoring.
-    //Porque esto es literalmente un getter.
+    
     public List<Cultivo> listaDeCultivos() {
         return this.getCultivos();
     }

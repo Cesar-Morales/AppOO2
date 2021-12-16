@@ -6,10 +6,9 @@ public class Quinta {
 	
 
 	private List<Espacio> espacios = new ArrayList<>();
-	private static EstacionDelAnio estacion = Invierno.getSingletonInstance();    //STATE
+	private static EstacionDelAnio estacion = Invierno.getSingletonInstance();
 	private String nombre;
 	
-	//Se crea con un mes cualquiera y luego los cambios de estado hacen que se acomode solo
 	public Quinta(String nombre) {
 		setNombre(nombre);
 	}
@@ -23,10 +22,11 @@ public class Quinta {
 		return estacion.puedePlantarseEnEstacion(cultivo);
 	}
 	
+	// HACER METODO PARA QUE IMPRIMA ALGO EN CASO DE NO ENCONTRAR EL NOMBRE
 	public Boolean agregarCultivoAEspacio(String nombre, Cultivo cultivo) {
 		boolean agregado = false;
 		for(Espacio e: espacios) {
-			if(e.getName() == nombre) {
+			if(e.getName().equals(nombre)) {
 				if(puedePlantarseEnEstacion(cultivo)){
 					agregado = e.agregarCultivo(cultivo);	
 				}
@@ -35,8 +35,8 @@ public class Quinta {
 		return agregado;
 	}
 
-	public void agregarEspacio(Espacio e) {
-		espacios.add(e);
+	public void agregarEspacio(Espacio espacio) {
+		espacios.add(espacio);
 	}
 	
 	private List<Espacio> getListaEspacios(){

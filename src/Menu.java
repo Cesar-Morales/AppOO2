@@ -61,10 +61,15 @@ public class Menu {
 			System.out.println("| Ingrese el nombre del espacio:         |");
 			System.out.println("|----------------------------------------|");
 			String nombreEspacio = teclado.next();
-			quinta.agregarCultivoAEspacio(nombreEspacio, cultivo);
+			if(quinta.agregarCultivoAEspacio(nombreEspacio, cultivo)){
+				System.out.println("El cultivo se agregó correctamente");
+			}
+			else{
+				System.out.println("El cultivo no pasa las condiciones necesarias para agregarse");
+			}
 		}
 		catch (NoSuchElementException e){
-			System.out.println();
+			System.out.println("El cultivo ingresado es incorrecto");
 		}
 	}
 

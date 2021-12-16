@@ -46,10 +46,6 @@ public abstract class EstacionDelAnio {
 		setCurrentTimeSupplier(currentTimeSupplier);
 	}
 
-	//Refactorizado move method, renombrado, extarct method y replace temp with query.
-	//Hablar porque el singleton está en cada clase concreta y no en la bases.
-	//Hacer las transiciones en las sublcases para sacar el switch.
-
 	protected boolean terminoLaEstacion(){
 		return getMeses().contains(calcularMes()) ? false : true;
 	}
@@ -62,7 +58,6 @@ public abstract class EstacionDelAnio {
 		return calendarioActual().get(Calendar.MONTH) + 1;
 	}
 
-	//Nuevo template method
 	public boolean puedePlantarseEnEstacion(Cultivo c){
 		if(terminoLaEstacion()){
 			return evaluarEnSiguienteEstacion(c, cambiarYObtenerSiguienteEstacion());
