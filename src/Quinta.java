@@ -3,10 +3,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 //Esto tambien debería ser un singleton
@@ -27,15 +25,14 @@ public class Quinta {
 		return estacion.puedePlantarseEnEstacion(cultivo);
 	}
 	
-	public void agregarCultivoAEspacio(String nombre, Cultivo c) {
-		boolean agregado = false;
+	public boolean agregarCultivoAEspacio(String nombre, Cultivo c) {
 		for(Espacio e: espacios) {
 			if(e.getName() == nombre) {
-				agregado = true;
 				e.agregarCultivo(c);
+				return true;
 			}
 		}
-		if(!agregado) System.out.println("Nombre del cultivo desconocido");
+		return false;
 	}
 
 	static void agregarEspacio(Espacio e) {
@@ -44,12 +41,12 @@ public class Quinta {
 		System.out.println();
 	}
   
-	public void eliminarEspacio(Espacio e) {
-		espacios.remove(e);
+	public boolean eliminarEspacio(Espacio e) {
+		return espacios.remove(e);
 	}
 	
-	private static List<Espacio> getListaEspacios(){
-		return new ArrayList<Espacio>(espacios);
+	public static List<Espacio> getListaEspacios(){
+		return espacios;
 	}
 
 	public static void listarEspacios() {
