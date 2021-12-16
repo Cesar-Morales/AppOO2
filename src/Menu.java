@@ -64,6 +64,9 @@ public class Menu {
 			if(quinta.agregarCultivoAEspacio(nombreEspacio, cultivo)){
 				System.out.println("El cultivo se agregó correctamente");
 			}
+			else if(quinta.puedePlantarseEnEstacion(cultivo)){
+				System.out.println("El cultivo no puede plantarse por la estacion");
+			}
 			else{
 				System.out.println("El cultivo no pasa las condiciones necesarias para agregarse");
 			}

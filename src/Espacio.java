@@ -30,7 +30,7 @@ public class Espacio {
     private boolean puedePLantarseEnSuelo(Cultivo cultivo) {
         return this.getTipoDeSuelo().puedePlantarse(cultivo);
     }
-    
+
     public List<Cultivo> listaDeCultivos() {
         return this.getCultivos();
     }
